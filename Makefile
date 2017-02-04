@@ -1,6 +1,11 @@
 INSTALL = /usr/bin/install
 
 install: pjbackup.py
-	$(INSTALL) 755 ./pjbackup.py /usr/local/bin/pjbackup
+	$(INSTALL) -m 755 ./pjbackup.py /usr/local/bin
 	mkdir -p /etc/pjbackup
-	$(INSTALL) ./conf /etc/pjbackup/conf
+	$(INSTALL) ./conf /etc/pjbackup
+
+uninstall:
+	rm /usr/local/bin/pjbackup
+	rm /etc/pjbackup/conf
+	rm /etc/pjbackup

@@ -44,6 +44,8 @@ def read_conf(path):
     
     for line in conf:
         arg = line.split()
+        if len(arg) == 0:
+            continue
         if arg[0] not in args:
             error('unknown args')
         elif arg[0] == '--dest':
@@ -122,7 +124,7 @@ def move_old_snapshots(dest, limit):
     dirs = sorted(listdir(dest))
     dirs.reverse()
     for snap in dirs:
-        if int(snap[-1]) == limit:
+        if int(snap[-1]) >= int(limit):
             continue
         new_snap = snap[:-1] + str(int(snap[-1]) + 1)
         move(dest + '/' + snap, dest + '/' + new_snap)

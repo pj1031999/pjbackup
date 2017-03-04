@@ -80,6 +80,8 @@ def move(old, new):
 
 
 def create_snapshot(volume, snap):
+    if exists(snap):
+        subprocess.run(['/bin/btrfs', 'subvolume', 'delete', snap])
     subprocess.run(['/bin/btrfs', 'subvolume', 'snapshot', volume, snap])
 
 
